@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root 'dashboard#index'
+  root 'application#index'
+  get '*path' => 'application#index'
 end
