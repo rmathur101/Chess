@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore.js
 //= require turbolinks
 //= require_tree .
