@@ -1,6 +1,7 @@
 angular
     .module('AngChess', [
         'ngRoute',
+        'ng-rails-csrf',
         'templates'
     ]).config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -8,9 +9,9 @@ angular
                 templateUrl: 'home.html',
                 controller: 'HomeCtrl'
             });
-            
-        $locationProvider.html5Mode({
-          enabled: true,
-          requireBase: false
-        });
+
+        // $locationProvider.html5Mode({
+        //   enabled: true,
+        //   requireBase: false
+        // });
     });
