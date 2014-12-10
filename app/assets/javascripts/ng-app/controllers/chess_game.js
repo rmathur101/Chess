@@ -1,7 +1,6 @@
 angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 	$scope.init = function(){
 		createGame();
-		$('#a1').append('<img class="chess_piece" src="assets/white_rook.png" alt="image">');
 	};
 
 	$scope.init();
@@ -24,7 +23,8 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 		player2 = new Player('black');
 		var game = new Game(player1, player2);
 		game.activateSquares();
-		game.populateImages;
+		game.populateImages();
+		console.log(game.pieceToSquare);
 	};
 
 	function Player (color) {
@@ -87,8 +87,6 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
             var pawn = new Pawn('white');
             pawn.image = '<img class="chess_piece" src="assets/white_pawn.png" alt="white_pawn">'
             this.squares[square_notation].occupied = pawn;
-
-
           }
         }
       }
@@ -110,7 +108,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
       // piece_keys = Object.keys(this.pieceToSquare)
       for (piece in this.pieceToSquare) {
         var notation_class = "#" + this.pieceToSquare[piece].notation //yields
-        $(notation_class).append(this.pieceToSquare[piece].occupied.image)
+        $(notation_class).append(this.pieceToSquare[piece].occupied.image);
       }
 
                 // console.log('boo')
@@ -141,7 +139,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
       this.pieceToSquare['whiteking'] = this.squares['e1'];
       	whiteking = new King('white');
       	whiteking.image = '<img id="whiteking" class="chess_piece" src="assets/white_king.png" alt="image">';
-        this.squares['e1'].occupied = new King('white')
+        this.squares['e1'].occupied = whiteking;
 
       this.pieceToSquare['whitebishop2'] = this.squares['f1'];
       	whitebishop2 = new Bishop('white');
@@ -151,7 +149,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
       this.pieceToSquare['whiteknight2'] = this.squares['g1'];
       	whiteknight2 = new Knight('white');
       	whiteknight2.image = '<img id="whiteknight2" class="chess_piece" src="assets/white_knight.png" alt="image">';
-        this.squares['g1'].occupied = new Knight('white')
+        this.squares['g1'].occupied = whiteknight2;
 
       this.pieceToSquare['whiterook2'] = this.squares['h1'];
       	whiterook2 = new Rook('white');
