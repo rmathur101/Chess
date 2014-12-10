@@ -1,5 +1,5 @@
 
-angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
+angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 		$scope.init = function(){
 			drawChessBoard();
 			$scope.createGame();
@@ -24,48 +24,100 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
     			this.color = color;
     			this.castleKing = true;
     			this.castleQueen = true;
-    			this.initializePieces = function(){
-    				this.king = new King(this.color);
-    				this.queen = new Queen(this.color);
-    				this.bishop1 = new Bishop(this.color);
-    				this.bishop2 = new Bishop(this.color);
-    				this.rook1 = new Rook(this.color);
-    				this.rook2 = new Rook(this.color);
-    				this.knight1 = new Knight(this.color);
-    				this.knight2 = new Knight(this.color);
-    				this.pawn1 = new Pawn(this.color);
-    				this.pawn2 = new Pawn(this.color);
-    				this.pawn3 = new Pawn(this.color);
-    				this.pawn4 = new Pawn(this.color);
-    				this.pawn5 = new Pawn(this.color);
-    				this.pawn6 = new Pawn(this.color);
-    				this.pawn7 = new Pawn(this.color);
-    				this.pawn8 = new Pawn(this.color);
-    			}
 				};
 
     		function Game (player1, player2) {
 				    this.player1 = player1;
 				    this.player2 = player2;
 				    this.activePlayer = player1;
-				    this.cells = [];
-				    this.activateCells = function(){
-							var letter_notation = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+            this.squares = {};
+            this.pieceToSquare = {
+              // whiteRook1/: cell1a1
+            };
+
+            // this.activatePieces = function(){
+            //   createKings();
+            //   createQueens();
+            //   createBishops();
+            //   createRooks();
+            //   createKnights();
+            //   createPawns();
+            // };
+
+				    this.activateSquares = function(){
+							var letter_notation = ["a", "b", "c", "d", "e", "f", "g", "h"]
 							var number_notation = ['1', '2', '3', '4', '5', '6', '7', '8'];
 							var num = 1;
 							for (var i = 0; i < 8; i++) {
 								for (var d = 0; d < 8; d++) {
 									var square_notation = letter_notation[i] + number_notation[d]
-									cell = new Cell(square_notation);
+
+
+                  this.squares[square_notation] = new Square(square_notation)
+                  // console.log(this.squares);
+                  this.checkOccupied(square_notation)
 									num += 1;
 								}
 							}
 
-
+              // console.log(this.squares);
 				    }
+
+            this.checkOccupied = function(square_notation){
+              // console.log(square_notation)
+              // console.log(this.squares)
+              var letter_notation = ["a", "b", "c", "d", "e", "f", "g", "h"]
+              var letter = square_notation[0];
+              var number = square_notation[1];
+              if (number == '1') {
+                // console.log("my number: " + number);
+
+              }
+              else if (number == '2') {
+                for (var i = 0; i < 8; i++) {
+                  if (letter == letter_notation[i] ) {
+                    var piece = 'whitePawn' + (i + 1)
+                    this.pieceToSquare[piece] = this.squares[square_notation]
+                    this.squares[square_notation].occupied = new Pawn('white');
+                  }
+                }
+
+              }
+              else if (number == '7') {
+                for (var i = 0; i < 8; i++) {
+                  if (letter == letter_notation[i] ) {
+                    var piece = 'blackPawn' + (i + 1)
+                    this.pieceToSquare[piece] = this.squares[square_notation]
+                    this.squares[square_notation].occupied = new Pawn('black');
+                  }
+                }
+
+              }
+              else if (number == '8') {
+
+              }
+              console.log('this is the piece to square hash:');
+                console.log(this.pieceToSquare);
+            };
+
+
+
+            // createKings = function(){
+            //   // var whiteKing = new King('white');
+            //   // var blackKing = new King('black');
+
+            //   this.pieceToSquare.whiteKing.occupied = new King('white')
+            //   this.pieceToSquare.blackKing.occupied = new King('black')
+
+            //   // this.pieceToSquare[whiteRook1].occupied = new Rook('white')
+
+            // };
+
+
 				};
 
-				function Cell (notation) {
+				function Square(notation) {
 					this.notation = notation;
 					this.occupied = undefined;
 					this.x = undefined;
@@ -91,11 +143,11 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 				player1 = new Player('white');
 				player2 = new Player('black');
 
-				player1.initializePieces();
-				player2.initializePieces();
+				// // player1.initializePieces();
+				// player2.initializePieces();
 
 				var game = new Game(player1, player2);
-				game.activateCells();
+				game.activateSquares();
 
     	}
 
@@ -134,5 +186,5 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 
 
 
-});
+}]);
 
