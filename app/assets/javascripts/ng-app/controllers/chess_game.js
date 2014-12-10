@@ -1,5 +1,5 @@
 
-angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
+angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 		$scope.init = function(){
 			drawChessBoard();
 			$scope.createGame();
@@ -127,5 +127,5 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 
 		
 	
-});
+}]);
 
