@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 		$scope.init = function(){
 			drawChessBoard();
@@ -30,16 +30,6 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 					$('#chess_board').append(divString);
 				});
 			};
-
-
-=======
-angular.module('AngChess')
-    .controller('ChessGameCtrl', function ($scope) {
-
-    	$scope.init = function(){
-				markDivs();
-    	};
-
     	
 
 
