@@ -5,23 +5,20 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 	 		revert: "invalid"
 	 		// scope: "items"
 	  });
-		// $( ".chess_square" ).droppable({
-  //     accept: ".chess_piece"
-  //   });
+
     $('.chess_square').droppable({
-        // scope: "items",
-        drop: function(event, ui) {
-        	var square = $('#' + event.target.id);
-        	var piece = $('#' + event.toElement.id);
-        	square.append(piece);
-        	// piece.removeAttr('style');
-        	piece.css("position", "relative");
-        	piece.css("left", '0px');
-        	piece.css("right", '0px');
-        	piece.css("top", '0px');
-        	piece.css("bottom", '0px');
-        	$(ui.draggable).draggable({"disabled":false});
-        }
+       // scope: "items",
+      drop: function(event, ui) {
+      	var square = $('#' + event.target.id);
+      	var piece = $('#' + event.toElement.id);
+      	square.append(piece);
+      	piece.css("position", "relative");
+      	piece.css("left", '0px');
+      	piece.css("right", '0px');
+      	piece.css("top", '0px');
+      	piece.css("bottom", '0px');
+      	$(ui.draggable).draggable({"disabled":false});
+      }
     });
 
 	};
