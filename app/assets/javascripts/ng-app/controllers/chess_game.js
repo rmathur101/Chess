@@ -85,7 +85,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
             var piece = 'whitePawn' + (i + 1)
             this.pieceToSquare[piece] = this.squares[square_notation]
             var pawn = new Pawn('white');
-            pawn.image = '<img class="chess_piece" src="assets/white_pawn.png" alt="white_pawn">'
+            pawn.image = '<img class="chess_piece" id="' + piece + '" src="assets/white_pawn.png" alt="white_pawn">'
             this.squares[square_notation].occupied = pawn;
           }
         }
@@ -96,7 +96,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
             var piece = 'blackPawn' + (i + 1)
             this.pieceToSquare[piece] = this.squares[square_notation]
             var pawn = new Pawn('black');
-            pawn.image = '<img class="chess_piece" src="assets/black_pawn.png" alt="black_pawn">'
+            pawn.image = '<img class="chess_piece" id="' + piece + '" src="assets/black_pawn.png" alt="black_pawn">'
             this.squares[square_notation].occupied = pawn;
           }
         }
@@ -111,8 +111,6 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
         $(notation_class).append(this.pieceToSquare[piece].occupied.image);
       }
 
-                // console.log('boo')
-      // $('.a1').append('<img class="chess_piece" src="assets/white_rook.png" alt="image">');
     };
 
     this.populateMajorPieces = function(){
