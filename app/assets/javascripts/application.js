@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.js
 //= require underscore.js
 //= require angular
 //= require ng-rails-csrf
