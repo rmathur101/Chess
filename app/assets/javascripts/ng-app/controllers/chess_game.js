@@ -1,21 +1,22 @@
 angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 	$scope.init = function(){
 		createGame();
-		$('.a1').append('<img class="chess_piece" src="assets/white_rook.png" alt="image">');
+		$('#a1').append('<img class="chess_piece" src="assets/white_rook.png" alt="image">');
 	};
 
-		$scope.init();
+	$scope.init();
 
-		function Pawn(color){};
-		function Bishop(color){};
-		function Knight(color){};
-		function Rook(color){
-			this.color = color
-			this.image = undefined;
+	function Pawn(color){};
+	function Bishop(color){};
+	function Knight(color){};
+	function Rook(color){
+		this.color = color
+		this.image = undefined;
 
-		};
-		function Queen(color){};
-		function King(color){};
+	};
+	function Queen(color){};
+	function King(color){};
+
 
 	function createGame(){
 		drawChessBoard();
@@ -23,6 +24,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 		player2 = new Player('black');
 		var game = new Game(player1, player2);
 		game.activateSquares();
+		game.populateImages;
 	};
 
 	function Player (color) {
@@ -70,10 +72,9 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 				};
 			};
       this.populateMajorPieces();
-      console.log(this.pieceToSquare);
     };
 
-    this.populatePawns = function(square_notation){
+		this.populatePawns = function(square_notation){
       var letter_notation = ["a", "b", "c", "d", "e", "f", "g", "h"]
       var letter = square_notation[0];
       var number = square_notation[1];
@@ -83,7 +84,11 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
           if (letter == letter_notation[i] ) {
             var piece = 'whitePawn' + (i + 1)
             this.pieceToSquare[piece] = this.squares[square_notation]
-            this.squares[square_notation].occupied = new Pawn('white');
+            var pawn = new Pawn('white');
+            pawn.image = '<img class="chess_piece" src="assets/white_pawn.png" alt="white_pawn">'
+            this.squares[square_notation].occupied = pawn;
+
+
           }
         }
       }
@@ -92,10 +97,24 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
           if (letter == letter_notation[i] ) {
             var piece = 'blackPawn' + (i + 1)
             this.pieceToSquare[piece] = this.squares[square_notation]
-            this.squares[square_notation].occupied = new Pawn('black');
+            var pawn = new Pawn('black');
+            pawn.image = '<img class="chess_piece" src="assets/black_pawn.png" alt="black_pawn">'
+            this.squares[square_notation].occupied = pawn;
           }
         }
       }
+    };
+
+    this.populateImages = function(){
+
+      // piece_keys = Object.keys(this.pieceToSquare)
+      for (piece in this.pieceToSquare) {
+        var notation_class = "#" + this.pieceToSquare[piece].notation //yields
+        $(notation_class).append(this.pieceToSquare[piece].occupied.image)
+      }
+
+                // console.log('boo')
+      // $('.a1').append('<img class="chess_piece" src="assets/white_rook.png" alt="image">');
     };
 
     this.populateMajorPieces = function(){
