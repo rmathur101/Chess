@@ -11,14 +11,21 @@
 	border: 1px solid black;
 }
 
-.black {
-	background-color: black;
+.square_color1 {
+	background-color: white;
 }
 
-.white {
-	background-color: white;
+.square_color2 {
+	background-color: green;
+}
+
+.chess_piece {
+	width:50px;
+	height:50px;
 }
 
 #chess_board {
 	width: 425px;
+	height: 425px;
 }
+
