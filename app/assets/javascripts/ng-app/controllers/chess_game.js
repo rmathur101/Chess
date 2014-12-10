@@ -26,16 +26,18 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 					var notation = letter + number
 					var square_color = colorSquares(number_index, letter_index);
 					divString = divString + '<div class="chess_square '+square_color+' '+notation+'"></div>';
-					});
-					$('#chess_board').append(divString);
 				});
-			};
-    	
+				$('#chess_board').append(divString);
+			});
+		};
+
 
 
     	$scope.createGame = function(){
-    		
-				function King (){};
+
+				function King (){
+					this.square = cell1;
+				};
 				function Queen (){};
 				function Bishop (){};
 				function Rook (){};
@@ -105,7 +107,7 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 								if (this.notation[1] == number_notation[i] ) {
 									this.y = i;
 								}
-							}						
+							}
 					}
 				}
 
@@ -123,9 +125,9 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 
     	}
 
- 			$scope.init();	
+ 			$scope.init();
 
-		
-	
+
+
 });
 
