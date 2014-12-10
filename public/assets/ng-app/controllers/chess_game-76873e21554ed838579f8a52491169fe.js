@@ -125,6 +125,13 @@ angular.module('AngChess').controller('ChessGameCtrl', function ($scope) {
 
  			$scope.init();	
 
+
+
+
+
+
+			
+
 		
 	
 });
