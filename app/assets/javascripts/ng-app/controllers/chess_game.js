@@ -1,6 +1,29 @@
 angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 	$scope.init = function(){
 		createGame();
+		$('.chess_piece').draggable({
+	 		revert: "invalid",
+	 		scope: "items"
+	  });
+		// $( ".chess_square" ).droppable({
+  //     accept: ".chess_piece"
+  //   });
+    $('.chess_square').droppable({
+        scope: "items",
+        drop: function(event, ui) {
+        	console.log(event);
+        	var square = $('#' + event.target.id);
+        	var piece = $('#' + event.toElement.id);
+        	console.log(square);
+        	console.log(piece);
+        	// $('div').removeAttr('style');
+        	square.append(piece);
+        	piece.removeAttr('style');
+
+        	// $(ui.draggable).draggable({"disabled":true});
+        }
+    });
+
 	};
 
 	$scope.init();
