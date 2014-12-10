@@ -1,9 +1,4 @@
-angular
-    .module('AngChess', [
-        'ngRoute',
-        'ng-rails-csrf',
-        'templates'
-    ]).config(function ($routeProvider, $locationProvider) {
+angular.module('AngChess', ['ngRoute', 'ng-rails-csrf','templates']).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'chess_game.html',
@@ -14,4 +9,4 @@ angular
             enabled: true,
             requireBase: false
         });
-    });
+    }]);
