@@ -4,12 +4,7 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 
 		//testing.....................................................
 
-		// console.log($('#a1').find(':first').attr('id'));
-		// $('#chess_board').append('<img id="whitePawn8" class="chess_piece white" src='+CHESS_PIECE_IMAGES['whitePawn1']+' alt="image">');
-
-
-		// pawn = new Pawn();
-		// pawn.init('whitePawn1', 'e1');
+		console.log($('#a1').find(':first').attr('id'));
 
 		//testing.....................................................
 
