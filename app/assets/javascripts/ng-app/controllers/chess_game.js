@@ -1,6 +1,19 @@
 angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($scope) {
 	$scope.init = function(){
 		createGame();
+
+		//testing.....................................................
+
+		// console.log($('#a1').find(':first').attr('id'));
+		// $('#chess_board').append('<img id="whitePawn8" class="chess_piece white" src='+CHESS_PIECE_IMAGES['whitePawn1']+' alt="image">');
+
+
+		// pawn = new Pawn();
+		// pawn.init('whitePawn1', 'e1');
+
+		//testing.....................................................
+
+
 		$('.chess_piece').draggable({
 	 		revert: "invalid"
 	  });
@@ -29,9 +42,9 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 		player1 = new Player('white');
 		player2 = new Player('black');
 		var game = new Game(player1, player2);
-		game.activateSquares();
-		game.populateImages();
-		console.log(game.pieceToSquare);
+		game.populatePieces();
+		// game.activateSquares();
+		// game.populateImages();
 	};
 }]);
 
