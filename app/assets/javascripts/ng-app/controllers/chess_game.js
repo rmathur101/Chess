@@ -43,8 +43,6 @@ angular.module('AngChess').controller('ChessGameCtrl', ['$scope', function ($sco
 		player2 = new Player('black');
 		var game = new Game(player1, player2);
 		game.populatePieces();
-		// game.activateSquares();
-		// game.populateImages();
 	};
 }]);
 
