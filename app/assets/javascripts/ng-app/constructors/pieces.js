@@ -1,27 +1,23 @@
 function Piece(){
 	this.name = undefined;
-	this.color = undefined;
 	this.image = undefined;
 	this.position = undefined;
-
-	this.createImage = function(){
-		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+PIECE_IMAGES[this.name]+'" alt="image">';
-	};
+	this.color = undefined;
 
 	this.getColor = function(){
 		this.color = this.name.match("[a-z]+")[0];
 	};
 
-	this.init = function(name, position) {
-		this.name = name;
-		this.position = position;
-		this.getColor();
-		this.createImage();
-		this.placePiece(position);
-	};
-
 	this.placePiece = function(position) {
 		$('#'+position).append(this.image);
+	};
+
+	this.init = function(name, image, position) {
+		this.name = name;
+		this.position = position;
+		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+image+'" alt="image">';
+		this.getColor();
+		this.placePiece(position);
 	};
 };
 

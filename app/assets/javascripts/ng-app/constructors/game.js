@@ -7,9 +7,10 @@
     this.populatePieces = function(){
       for(piece in INITIAL_POSITIONS){
         var pieceType = piece.match("[A-Z]{1}[a-z]+")[0];
+        var image = PIECE_IMAGES[piece];
         var position = INITIAL_POSITIONS[piece];
         newPiece = eval('new '+pieceType);
-        newPiece.init(piece, position);
+        newPiece.init(piece, image, position);
         this.pieces[piece] = newPiece
       };
       console.log(this.pieces);
