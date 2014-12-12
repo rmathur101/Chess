@@ -18,4 +18,10 @@ function convertNotationToCoordinates(notation) {
 	return coordinates;
 };
 
+function markFirstMoveTaken(piece, type){
+	if (piece.firstMoveTaken == false && type == "Pawn"){
+		piece.firstMoveTaken = true;
+	};
+};
+
 

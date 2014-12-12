@@ -1,53 +1,64 @@
 function Piece(){
 	this.name = undefined;
+	this.pieceType = undefined;
 	this.image = undefined;
 	this.position = undefined;
+	this.coordinates =undefined;
 	this.color = undefined;
+	this.possibles = [];
+	this.firstMoveTaken = false;
 
 	this.getColor = function(){
 		this.color = this.name.match("[a-z]+")[0];
 	};
 
-	this.placePiece = function(position) {
-		$('#'+position).append(this.image);
+	this.getPieceType = function(){
+		this.pieceType = this.name.match("[A-Z]{1}[a-z]+")[0];
+	};
+
+	this.placePiece = function(square_position) {
+		$('#'+square_position).append($('#'+this.name));
+		this.position = square_position;
+		this.possibles = [];
+		this.coordinates = [];
+		this.firstMoveTaken = true;
+	};
+
+	this.placePieceInitial = function(square_position){
+		$('#'+square_position).append(this.image);
+		this.position = square_position;
+	};
+
+	this.getCoordinates = function(){
+		var letter = this.position[0];
+		var number = this.position[1];
+		console.log(NUMBER_NOTATION[0]);
+		var coordinates = {x: undefined, y: undefined}
+		for (var i = 0; i < 8; i++){
+			if (letter == LETTER_NOTATION[i]){
+				coordinates.x = i;
+			};
+		 	if (number == NUMBER_NOTATION[i]){
+				coordinates.y = i;
+			};
+		};
+		return coordinates;
+	};
+
+	this.getNotation = function(x, y){
+		var notation = LETTER_NOTATION[x] + NUMBER_NOTATION[y]
+		return notation;
 	};
 
 	this.init = function(name, image, position) {
 		this.name = name;
 		this.position = position;
 		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+image+'" alt="image">';
+		this.getPieceType();
 		this.getColor();
-		this.placePiece(position);
+		this.placePieceInitial(position);
+		// this.placePiece(position);
 	};
 };
 
-function Pawn(){
-};
-function Knight(){
-};
-function Rook(){
-};
-function Bishop(){
-};
-function Queen(){
-};
-function King(){
-};
 
-Pawn.prototype = new Piece();
-Pawn.constructor = Pawn;
-
-Knight.prototype = new Piece();
-Knight.constructor = Knight;
-
-Rook.prototype = new Piece();
-Rook.constructor = Rook;
-
-Bishop.prototype = new Piece();
-Bishop.constructor = Bishop;
-
-Queen.prototype = new Piece();
-Queen.constructor = Queen;
-
-King.prototype = new Piece();
-King.constructor = King;

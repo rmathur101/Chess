@@ -1,5 +1,5 @@
 function drawChessBoard(){
-	_.each(NUMBER_NOTATION.reverse(), function(number, number_index){
+	_.each(['1', '2', '3', '4', '5', '6', '7', '8'].reverse(), function(number, number_index){
 		var divString = '';
 		_.each(LETTER_NOTATION, function(letter, letter_index){
 			var notation = letter + number
