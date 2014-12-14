@@ -3,7 +3,7 @@ function Piece(){
 	this.pieceType = undefined;
 	this.image = undefined;
 	this.position = undefined;
-	this.coordinates =undefined;
+	this.coordinates = undefined;
 	this.color = undefined;
 	this.possibles = [];
 	this.firstMoveTaken = false;
@@ -19,8 +19,7 @@ function Piece(){
 	this.placePiece = function(square_position) {
 		$('#'+square_position).append($('#'+this.name));
 		this.position = square_position;
-		this.possibles = [];
-		this.coordinates = [];
+		this.clearState();
 		this.firstMoveTaken = true;
 	};
 
@@ -32,7 +31,6 @@ function Piece(){
 	this.getCoordinates = function(){
 		var letter = this.position[0];
 		var number = this.position[1];
-		console.log(NUMBER_NOTATION[0]);
 		var coordinates = {x: undefined, y: undefined}
 		for (var i = 0; i < 8; i++){
 			if (letter == LETTER_NOTATION[i]){
@@ -42,12 +40,17 @@ function Piece(){
 				coordinates.y = i;
 			};
 		};
-		return coordinates;
+		this.coordinates = coordinates;
 	};
 
 	this.getNotation = function(x, y){
 		var notation = LETTER_NOTATION[x] + NUMBER_NOTATION[y]
 		return notation;
+	};
+
+	this.clearState = function(){
+		this.possibles = [];
+		this.coordinates = [];
 	};
 
 	this.init = function(name, image, position) {
@@ -57,8 +60,9 @@ function Piece(){
 		this.getPieceType();
 		this.getColor();
 		this.placePieceInitial(position);
-		// this.placePiece(position);
 	};
 };
+
+
 
 

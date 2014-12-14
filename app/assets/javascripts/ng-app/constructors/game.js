@@ -9,7 +9,7 @@ function Game (player1, player2) {
       var pieceType = piece.match("[A-Z]{1}[a-z]+")[0];
       var image = PIECE_INITIALIZATION[piece].image;
       var position = PIECE_INITIALIZATION[piece].position;
-      newPiece = eval('new '+pieceType);
+      var newPiece = eval('new '+pieceType);
       newPiece.init(piece, image, position);
       this.pieces[piece] = newPiece;
     };

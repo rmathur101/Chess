@@ -2,7 +2,8 @@ $(function() {
 //to find if there is something in the div
 // console.log($('#a1').find(':first').attr('id'));
 	drawChessBoard();
-	setPrototypes();
+	initializeConstructors();
+
 	var game = newGame();
 	game.populatePieces();
 
@@ -10,16 +11,18 @@ $(function() {
 	$('.chess_piece').mousedown(function(){
 		var selected = $('#'+this.id);
 		var pieceObject = game.pieces[this.id];
+		console.log("pieceObject");
+		console.log(pieceObject);
 		var possibles = pieceObject.getPossiblePositions();
+		console.log("possibles");
+		console.log(possibles);
 		makeSquaresDroppable(possibles);
 		dropPiece(pieceObject);
 	});
 });
 
 function makeSquaresDroppable(possibles) {
-		console.log(possibles);
 	_.each(possibles, function(position){
-		console.log(position);
 		$('#'+position).addClass('drop_positions');
 	});
 };
@@ -52,9 +55,8 @@ function modifyStyling(piece){
 };
 
 
-function setPrototypes(){
-	Pawn.prototype = new Piece();
-	Pawn.constructor = Pawn;
+function initializeConstructors(){
+	initializePawnConstructor();
 	Knight.prototype = new Piece();
 	Knight.constructor = Knight;
 	Rook.prototype = new Piece();

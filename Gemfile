@@ -16,5 +16,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :development, :test do
-  gem 'jasmine'
+  gem 'teaspoon'
 end

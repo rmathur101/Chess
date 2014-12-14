@@ -1,27 +1,52 @@
 function Pawn(){
-	 //remember to change this after the piece has been placed; remember to change the possibilities after the piece has been moved
-
 	this.getPossiblePositions = function(){
-		this.possibles = [];
-		this.coordinates = undefined;
-		this.coordinates = this.getCoordinates();
-		this.ifFirstMove();
+		this.clearState();
+		this.getCoordinates();
 		this.forwardMovement();
-		return this.possibles
+		return this.possibles;
 	};
 
 	this.forwardMovement = function() {
-		x = this.coordinates.x;
-		y = this.coordinates.y + 1;
-		this.possibles.push(this.getNotation(x, y));
+		this.forwardMovementWhite();
+		this.forwardMovementBlack();
 	};
 
-	this.ifFirstMove = function(argument) {
-		if (this.firstMoveTaken == false){
+	this.forwardMovementWhite = function(){
+		if (this.color == "white"){
+			x = this.coordinates.x;
+			y = this.coordinates.y + 1;
+			this.possibles.push(this.getNotation(x, y));
+			this.firstMoveWhite();
+		};
+	};
+
+	this.forwardMovementBlack = function(){
+		if (this.color == "black"){
+			x = this.coordinates.x;
+			y = this.coordinates.y - 1;
+			this.possibles.push(this.getNotation(x, y));
+			this.firstMoveBlack();
+		};
+	};
+
+	this.firstMoveWhite = function() {
+		if (this.firstMoveTaken == false && this.color == "white"){
 			x = this.coordinates.x;
 			y = this.coordinates.y + 2;
 			this.possibles.push(this.getNotation(x, y));
 		};
-	}
+	};
+	this.firstMoveBlack = function(){
+		if (this.firstMoveTaken == false && this.color == "black"){
+			x = this.coordinates.x;
+			y = this.coordinates.y - 2;
+			this.possibles.push(this.getNotation(x, y));
+		};
+	};
+};
+
+function initializePawnConstructor(){
+	Pawn.prototype = new Piece();
+	Pawn.constructor = Pawn;
 };
 
