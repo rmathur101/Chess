@@ -3,3 +3,13 @@ Maybe there is no use attaching the image to the object because you have to get 
 There doesn't be a good palce to mark when a pawn's first move has been taken
 
 Maybe create a hash that contains relationship better squares and pieces
+
+Don't think I need the hash that relates piece names to piece objects; i can go through the square name to get to the piece object and when I click on piece i can get the id of the containing square
+
+
+
+Things To Do
+-------------------------
+Pawn movement for pieces in front of it
+Pawn movement for diagonally taking pieces
+Pawn becoming a queen

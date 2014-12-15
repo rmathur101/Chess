@@ -7,6 +7,7 @@ function Piece(){
 	this.color = undefined;
 	this.possibles = [];
 	this.firstMoveTaken = false;
+	this.squaresToPieces = undefined;
 
 	this.getColor = function(){
 		this.color = this.name.match("[a-z]+")[0];
@@ -16,12 +17,12 @@ function Piece(){
 		this.pieceType = this.name.match("[A-Z]{1}[a-z]+")[0];
 	};
 
-	this.placePiece = function(square_position) {
-		$('#'+square_position).append($('#'+this.name));
-		this.position = square_position;
-		this.clearState();
-		this.firstMoveTaken = true;
-	};
+	// this.placePiece = function(square_position) {
+	// 	$('#'+square_position).append($('#'+this.name));
+	// 	this.position = square_position;
+	// 	this.clearState();
+	// 	this.firstMoveTaken = true;
+	// };
 
 	this.placePieceInitial = function(square_position){
 		$('#'+square_position).append(this.image);
@@ -51,14 +52,15 @@ function Piece(){
 	this.clearState = function(){
 		this.possibles = [];
 		this.coordinates = [];
+		this.squaresToPieces = undefined;
 	};
 
 	this.init = function(name, image, position) {
 		this.name = name;
 		this.position = position;
-		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+image+'" alt="image">';
-		this.getPieceType();
 		this.getColor();
+		this.getPieceType();
+		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+image+'" alt="image">';
 		this.placePieceInitial(position);
 	};
 };

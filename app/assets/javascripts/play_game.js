@@ -2,14 +2,8 @@ $(function() {
 	drawChessBoard();
 	initializeConstructors();
 	var game = newGame();
-	game.initializeDictionaries();
-	game.listenForEvents();
-
-
-
-
-
-
+	game.initializeSquaresToPiecesDictionary();
+	game.listenForNewEvents();
 
 });
 
