@@ -8,8 +8,12 @@ function Pawn(){
 	};
 
 	this.diagonalCaptureWhite = function(){
-		var x = this.coordinates.x + 1;
-		var y = this.coordinates.y + 1;
+		// var x;
+		// var y;
+		// x = this.coordinates.x + 1;
+		// y = this.coordinates.y + 1;
+		// this.addPossible(x, y);
+		// x = this.coordinates
 	};
 
 	this.forwardMovement = function() {
@@ -21,7 +25,7 @@ function Pawn(){
 		if (this.color == "white"){
 			x = this.coordinates.x;
 			y = this.coordinates.y + 1;
-			this.possibles.push(this.getNotation(x, y));
+			this.possibles.push(convertCoordinatesToNotation(x, y));
 			this.firstMoveWhite();
 		};
 	};
@@ -30,7 +34,7 @@ function Pawn(){
 		if (this.color == "black"){
 			x = this.coordinates.x;
 			y = this.coordinates.y - 1;
-			this.possibles.push(this.getNotation(x, y));
+			this.possibles.push(convertCoordinatesToNotation(x, y));
 			this.firstMoveBlack();
 		};
 	};
@@ -39,7 +43,7 @@ function Pawn(){
 		if (this.firstMoveTaken == false && this.color == "white"){
 			x = this.coordinates.x;
 			y = this.coordinates.y + 2;
-			this.possibles.push(this.getNotation(x, y));
+			this.possibles.push(convertCoordinatesToNotation(x, y));
 		};
 	};
 
@@ -47,7 +51,7 @@ function Pawn(){
 		if (this.firstMoveTaken == false && this.color == "black"){
 			var x = this.coordinates.x;
 			var y = this.coordinates.y - 2;
-			this.possibles.push(this.getNotation(x, y));
+			this.possibles.push(convertCoordinatesToNotation(x, y));
 		};
 	};
 

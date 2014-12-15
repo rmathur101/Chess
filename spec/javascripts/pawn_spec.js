@@ -28,7 +28,7 @@ describe("Pawn", function() {
 			black_pawn = new Pawn;
 		});
 
-		it("adds a possible square if piece can diagonally capture black piece to the right", function() {
+		it("adds a possible square if piece can diagonally capture opponent piece to the right", function() {
 
 		});
 

@@ -17,13 +17,6 @@ function Piece(){
 		this.pieceType = this.name.match("[A-Z]{1}[a-z]+")[0];
 	};
 
-	// this.placePiece = function(square_position) {
-	// 	$('#'+square_position).append($('#'+this.name));
-	// 	this.position = square_position;
-	// 	this.clearState();
-	// 	this.firstMoveTaken = true;
-	// };
-
 	this.placePieceInitial = function(square_position){
 		$('#'+square_position).append(this.image);
 		this.position = square_position;
@@ -44,10 +37,10 @@ function Piece(){
 		this.coordinates = coordinates;
 	};
 
-	this.getNotation = function(x, y){
-		var notation = LETTER_NOTATION[x] + NUMBER_NOTATION[y]
-		return notation;
-	};
+	// this.getNotation = function(x, y){
+	// 	var notation = LETTER_NOTATION[x] + NUMBER_NOTATION[y]
+	// 	return notation;
+	// };
 
 	this.clearState = function(){
 		this.possibles = [];

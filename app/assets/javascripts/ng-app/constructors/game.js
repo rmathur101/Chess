@@ -30,32 +30,28 @@ function Game (player1, player2) {
     };
   };
 
-
   this.listenForNewEvents = function(){
     var game = this;
     $('.chess_piece.'+game.active).draggable({revert: "invalid"});
     $('.chess_piece.'+game.active).mousedown(function(){
+      game.clearState();
+      game.removeDroppable();
       game.currentPiece = game.pieceIdToObject(this.id);
       game.currentPossibles = game.currentPiece.getPossiblePositions(game.squaresToPieces);
       game.dropPiece();
     });
   };
 
-
   this.dropPiece = function(){
     this.makeSquaresDroppable();
     var game = this;
     $('.drop_positions').droppable({
       drop: function(event, ui) {
-        // var square = $('#' + event.target.id);
-        var piece = $('#' + event.toElement.id);
         var oldPosition = game.currentPiece.position;
         var newPosition = event.target.id;
-        // game.updateSquaresToPieces(game.currentPiece.position, square[0].id);
-        // game.currentPiece.placePiece(square[0].id);
         game.placePiece(oldPosition, newPosition);
-        game.modifyStyling(piece);
-        game.removeDraggableAndDroppable();
+        game.modifyStyling();
+        game.removeDraggable();
         game.changeActiveColor();
         game.listenForNewEvents();
         // square.empty();
@@ -67,14 +63,9 @@ function Game (player1, player2) {
     this.currentPiece.position = newPosition;
     this.currentPiece.firstMoveTaken = true;
     this.currentPiece.clearState();
+    this.squaresToPieces[newPosition] = this.squaresToPieces[oldPosition];
+    this.squaresToPieces[oldPosition] = "";
     $('#'+newPosition).append($('#'+this.currentPiece.name));
-    this.squaresToPieces[newPosition] = this.squaresToPieces[oldPosition];
-    this.squaresToPieces[oldPosition] = "";
-  };
-
-  this.updateSquaresToPieces = function(oldPosition, newPosition) {
-    this.squaresToPieces[newPosition] = this.squaresToPieces[oldPosition];
-    this.squaresToPieces[oldPosition] = "";
   };
 
   this.pieceIdToObject = function(pieceId){
@@ -97,17 +88,26 @@ function Game (player1, player2) {
     });
   };
 
-  this.removeDraggableAndDroppable = function(){
+  this.removeDroppable = function(){
     $('.drop_positions').droppable('destroy');
-    $('.chess_piece.ui-draggable').draggable('destroy');
     $('.drop_positions').removeClass('drop_positions');
   };
 
-  this.modifyStyling = function(piece){
+  this.removeDraggable = function(){
+    $('.chess_piece.ui-draggable').draggable('destroy');
+  };
+
+  this.modifyStyling = function(){
+    var piece = $('#'+this.currentPiece.name);
     piece.css("position", "relative");
     piece.css("left", '0px');
     piece.css("right", '0px');
     piece.css("top", '0px');
     piece.css("bottom", '0px');
+  };
+
+  this.clearState = function(){
+    this.currentPossibles = undefined;
+    this.currentPiece = undefined;
   };
 };
