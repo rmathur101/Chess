@@ -14,7 +14,30 @@ describe("Pawn", function() {
 	  });
 	});
 
-	describe("forwardMovement", function() {
+	describe("#diagonalCaptureWhite", function() {
+		beforeEach(function() {
+	  	initializePawnConstructor();
+			white_pawn = new Pawn;
+			white_pawn.position = "e4";
+			white_pawn.getCoordinates();
+			white_pawn.firstMoveTaken = true;
+		});
+
+		beforeEach(function() {
+			initializePawnConstructor();
+			black_pawn = new Pawn;
+		});
+
+		it("adds a possible square if piece can diagonally capture black piece to the right", function() {
+
+		});
+
+		it("adds a possible square if piece can diagonally capture opponent piece to the left", function() {
+
+		});
+	});
+
+	describe("#forwardMovement", function() {
 	  beforeEach(function() {
 	  	initializePawnConstructor();
 			pawn = new Pawn;

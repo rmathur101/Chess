@@ -6,6 +6,11 @@ function Pawn(){
 		return this.possibles;
 	};
 
+	this.diagonalCaptureWhite = function(){
+
+
+	};
+
 	this.forwardMovement = function() {
 		this.forwardMovementWhite();
 		this.forwardMovementBlack();
@@ -36,6 +41,7 @@ function Pawn(){
 			this.possibles.push(this.getNotation(x, y));
 		};
 	};
+
 	this.firstMoveBlack = function(){
 		if (this.firstMoveTaken == false && this.color == "black"){
 			x = this.coordinates.x;

@@ -1,58 +1,17 @@
 $(function() {
-//to find if there is something in the div
-// console.log($('#a1').find(':first').attr('id'));
 	drawChessBoard();
 	initializeConstructors();
-
 	var game = newGame();
-	game.populatePieces();
+	game.initializeDictionaries();
+	game.listenForEvents();
 
-	$('.chess_piece').draggable({revert: "invalid"});
-	$('.chess_piece').mousedown(function(){
-		var selected = $('#'+this.id);
-		var pieceObject = game.pieces[this.id];
-		console.log("pieceObject");
-		console.log(pieceObject);
-		var possibles = pieceObject.getPossiblePositions();
-		console.log("possibles");
-		console.log(possibles);
-		makeSquaresDroppable(possibles);
-		dropPiece(pieceObject);
-	});
+
+
+
+
+
+
 });
-
-function makeSquaresDroppable(possibles) {
-	_.each(possibles, function(position){
-		$('#'+position).addClass('drop_positions');
-	});
-};
-
-function removeSquaresDroppable(){
-	$('.drop_positions').droppable('destroy');
-	$('.drop_positions').removeClass('drop_positions');
-};
-
-function dropPiece(pieceObject){
-	$('.drop_positions').droppable({
-    drop: function(event, ui) {
-    	var square = $('#' + event.target.id);
-    	var piece = $('#' + event.toElement.id);
-    	pieceObject.placePiece(square[0].id);
-			pieceObject.position = square[0].id;
-			modifyStyling(piece);
-			removeSquaresDroppable();
-   		// square.empty();
-    }
-  });
-};
-
-function modifyStyling(piece){
-  piece.css("position", "relative");
-	piece.css("left", '0px');
-	piece.css("right", '0px');
-	piece.css("top", '0px');
-	piece.css("bottom", '0px');
-};
 
 
 function initializeConstructors(){
