@@ -21,6 +21,12 @@ describe("Pawn", function() {
 			white_pawn.position = "e4";
 			white_pawn.getCoordinates();
 			white_pawn.firstMoveTaken = true;
+			black_pawn1 = new Pawn
+			black_pawn1.color = "black";
+			black_pawn1.position = ''
+			// white_pawn.squaresToPieces = {
+			// 	''
+			// }
 		});
 
 		beforeEach(function() {
@@ -59,31 +65,31 @@ describe("Pawn", function() {
 		});
 	});
 
-	describe("#forwardMovementBlack", function() {
-	  var pawn;
+	// describe("#forwardMovementBlack", function() {
+	//   var pawn;
 
-	  beforeEach(function() {
-	  	initializePawnConstructor();
-			pawn = new Pawn;
-			pawn.color = 'black';
-			pawn.position = "c4";
-			pawn.getCoordinates();
-	  });
+	//   beforeEach(function() {
+	//   	initializePawnConstructor();
+	// 		pawn = new Pawn;
+	// 		pawn.color = 'black';
+	// 		pawn.position = "c4";
+	// 		pawn.getCoordinates();
+	//   });
 
-	  it("returns possible squares for forward movement for black when first move", function() {
-	  	pawn.forwardMovementBlack();
-	  	expect(pawn.possibles).toContain('c3');
-	  	expect(pawn.possibles).toContain('c2');
-	  	expect(pawn.possibles.length).toEqual(2);
-	  });
+	//   it("returns possible squares for forward movement for black when first move", function() {
+	//   	pawn.forwardMovementBlack();
+	//   	expect(pawn.possibles).toContain('c3');
+	//   	expect(pawn.possibles).toContain('c2');
+	//   	expect(pawn.possibles.length).toEqual(2);
+	//   });
 
-	  it("returns possible squares for forward movement for black when not first move", function() {
-	  	pawn.firstMoveTaken = true;
-	  	pawn.forwardMovementBlack();
-	  	expect(pawn.possibles).toContain('c3');
-	  	expect(pawn.possibles.length).toEqual(1);
-	  });
-	});
+	//   it("returns possible squares for forward movement for black when not first move", function() {
+	//   	pawn.firstMoveTaken = true;
+	//   	pawn.forwardMovementBlack();
+	//   	expect(pawn.possibles).toContain('c3');
+	//   	expect(pawn.possibles.length).toEqual(1);
+	//   });
+	// });
 
 	describe("#forwardMovementWhite", function() {
 		var pawn;
@@ -122,16 +128,31 @@ describe("Pawn", function() {
 			pawn.getCoordinates();
 	  });
 
-	  it("returns possible square for first move if first move has not been taken", function() {
-	  	pawn.firstMoveBlack();
-	  	expect(pawn.possibles).toContain('h5');
-	  	expect(pawn.possibles.length).toEqual(1);
-	  });
-
-	  it("returns no possible square for first move if first move has not been taken", function() {
+	  it("does not add possible square if the first move has already been taken", function() {
 	  	pawn.firstMoveTaken = true;
 	  	pawn.firstMoveBlack();
 	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("does not add possible square if there is already a piece in the next forward square", function() {
+	  	var opponent = new Piece;
+	  	pawn.squaresToPieces = {'h6': opponent,'h5': ''};
+	  	pawn.firstMoveBlack();
+	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("does not add possible square if there is already a piece in the next next forward square", function() {
+	  	var opponent = new Piece;
+	  	pawn.squaresToPieces = {'h6': '' ,'h5': opponent};
+	  	pawn.firstMoveBlack();
+	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("adds possible square if there are no pieces in the way", function() {
+	  	pawn.squaresToPieces = {'h6': '', 'h5': ''};
+	  	pawn.firstMoveBlack();
+	  	expect(pawn.possibles).toContain('h5');
+	  	expect(pawn.possibles.length).toEqual(1);
 	  });
 	});
 
@@ -146,16 +167,31 @@ describe("Pawn", function() {
 			pawn.getCoordinates();
 	  });
 
-	  it("returns possible square for first move if first move has not been taken", function() {
-	  	pawn.firstMoveWhite();
-	  	expect(pawn.possibles).toContain('d4');
-	  	expect(pawn.possibles.length).toEqual(1);
-	  });
-
-	  it("returns no possible square for first move if first move has not been taken", function() {
+	  it("does not add possible square if the first move has already been taken", function() {
 	  	pawn.firstMoveTaken = true;
 	  	pawn.firstMoveWhite();
 	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("does not add possible square if there is already a piece in the next forward square", function() {
+	  	var opponent = new Piece;
+	  	pawn.squaresToPieces = {'d3': opponent,'d4': ''};
+	  	pawn.firstMoveWhite();
+	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("does not add possible square if there is already a piece in the next next forward square", function() {
+	  	var opponent = new Piece;
+	  	pawn.squaresToPieces = {'d3': '','d4': opponent};
+	  	pawn.firstMoveWhite();
+	  	expect(pawn.possibles.length).toEqual(0);
+	  });
+
+	  it("adds possible square if there are no pieces in the way", function() {
+			pawn.squaresToPieces = {'d3': '','d4': ''};
+	  	pawn.firstMoveWhite();
+	  	expect(pawn.possibles).toContain('d4');
+	  	expect(pawn.possibles.length).toEqual(1);
 	  });
 	});
 });
