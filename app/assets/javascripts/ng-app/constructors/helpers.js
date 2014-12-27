@@ -18,6 +18,15 @@ function convertNotationToCoordinates(notation) {
 	return coordinates;
 };
 
+function isOnBoard(x, y) {
+	if (x >= 0 && x <= 7 && y >= 0 && y <= 7){
+		return true;
+	}
+	else{
+		return false;
+	}
+};
+
 function markFirstMoveTaken(piece, type){
 	if (piece.firstMoveTaken == false && type == "Pawn"){
 		piece.firstMoveTaken = true;

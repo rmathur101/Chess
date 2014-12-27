@@ -6,6 +6,8 @@ Maybe create a hash that contains relationship better squares and pieces
 
 Don't think I need the hash that relates piece names to piece objects; i can go through the square name to get to the piece object and when I click on piece i can get the id of the containing square
 
+It's possible i don't even have to check isOnBoard for the pawn because the movement of conditions already put on the pieces
+
 
 
 Things To Do
