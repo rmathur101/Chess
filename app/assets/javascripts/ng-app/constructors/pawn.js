@@ -15,11 +15,13 @@ function Pawn(){
 	this.getPossiblesWhite = function() {
 		this.getPossibleFirstMoveWhite();
 		this.getPossibleForwardWhite();
+		this.getPossiblesDiagonalWhite();
 	};
 
 	this.getPossiblesBlack = function(){
 		this.getPossibleFirstMoveBlack();
 		this.getPossibleForwardBlack();
+		this.getPossiblesDiagonalBlack();
 	};
 
 	this.getPossiblesDiagonalWhite = function(){
@@ -29,6 +31,7 @@ function Pawn(){
 
 	this.addPossibleDiagonalWhite = function(x, y){
 		var possible = convertCoordinatesToNotation(x, y);
+		console.log(possible);
 		if (isOnBoard(x,y)){
 			if (this.squaresToPieces[possible].color != this.color && this.squaresToPieces[possible] != ''){
 				this.possibles.push(possible);
