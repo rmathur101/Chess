@@ -217,6 +217,29 @@ describe("Pawn", function() {
 			pawn.getPossiblesDiagonalBlack();
 			expect(pawn.possibles.length).toEqual(0);
 		});
+
+		it('adds possible if there is any enemy to the diagonal right', function(){
+			pawn.squaresToPieces = {'f2': enemy, 'h2': friend};
+			pawn.getPossiblesDiagonalBlack();
+			expect(pawn.possibles).toContain('f2');
+			expect(pawn.possibles.length).toEqual(1);
+		});
+
+		it('adds possible if there is any enemy to the diagonal left', function(){
+			pawn.squaresToPieces = {'f2': friend, 'h2': enemy};
+			pawn.getPossiblesDiagonalBlack();
+			expect(pawn.possibles).toContain('h2');
+			expect(pawn.possibles.length).toEqual(1);
+		});
 	});
 });
+
+
+
+
+
+
+
+
+
 
