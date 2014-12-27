@@ -3,7 +3,9 @@ function Piece(){
 	this.pieceType = undefined;
 	this.image = undefined;
 	this.position = undefined;
-	this.coordinates = undefined;
+	this.coordinates = {};
+	this.coordinates.x = undefined;
+	this.coordinates.y = undefined;
 	this.color = undefined;
 	this.possibles = [];
 	this.firstMoveTaken = false;
@@ -37,10 +39,10 @@ function Piece(){
 		this.coordinates = coordinates;
 	};
 
-	// this.getNotation = function(x, y){
-	// 	var notation = LETTER_NOTATION[x] + NUMBER_NOTATION[y]
-	// 	return notation;
-	// };
+	this.getNotation = function(){
+		var notation = LETTER_NOTATION[this.coordinates.x] + NUMBER_NOTATION[this.coordinates.y]
+		return notation;
+	};
 
 	this.clearState = function(){
 		this.possibles = [];

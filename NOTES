@@ -13,3 +13,9 @@ Things To Do
 Pawn movement for pieces in front of it
 Pawn movement for diagonally taking pieces
 Pawn becoming a queen
+
+
+
+Notes
+-------------------------
+How to test functions that are calling other functions
