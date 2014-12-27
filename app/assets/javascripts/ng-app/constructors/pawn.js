@@ -3,17 +3,23 @@ function Pawn(){
 		this.clearState();
 		this.squaresToPieces = squaresToPieces;
 		this.getCoordinates();
+		if (this.color == 'white'){
+			this.getPossiblesWhite();
+		}
+		else if (this.color == 'black'){
+			this.getPossiblesBlack();
+		}
 		return this.possibles;
 	};
 
 	this.getPossiblesWhite = function() {
-		this.getPossiblesFirstMoveWhite();
+		this.getPossibleFirstMoveWhite();
 		this.getPossibleForwardWhite();
 	};
 
 	this.getPossiblesBlack = function(){
-		this.getPossiblesFirstMoveBlack();
-		this.getPossiblesForwardBlack();
+		this.getPossibleFirstMoveBlack();
+		this.getPossibleForwardBlack();
 	};
 
 	this.getPossibleForwardWhite = function(){
