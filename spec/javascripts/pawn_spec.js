@@ -168,36 +168,28 @@ describe("Pawn", function() {
 		  initializePawnConstructor();
 		  pawn = new Pawn;
 		  pawn.color = 'white';
+		  pawn.position = 'c3';
+		  pawn.getCoordinates();
 			enemy = new Pawn;
 			enemy.color = 'black';
 			friend = new Pawn;
 			friend.color = 'white'
 		});
 
-		it('adds no possibles if the there are no pieces diagonal to the piece', function(){
-			pawn.position = 'c3';
-			pawn.getCoordinates();
+		it('adds no possibles if the there are no enemies diagonal to the piece', function(){
 			pawn.squaresToPieces = {'d4': '', 'b4': ''};
 			pawn.getPossiblesDiagonalWhite();
 			expect(pawn.possibles.length).toEqual(0);
 		});
 
-		it('adds possible if there is an enemy piece to the diagonal right', function(){;
-			pawn.position = 'c3';
-			pawn.getCoordinates();
+		it('adds possible if there is an enemy to the diagonal right', function(){;
 			pawn.squaresToPieces = {'d4': enemy, 'b4': friend};
 			pawn.getPossiblesDiagonalWhite();
 			expect(pawn.possibles).toContain('d4');
 			expect(pawn.possibles.length).toEqual(1);
 		});
 
-		it('adds possible if there is an enemy piece to the diagonal left', function(){
-			var enemy = new Pawn;
-			enemy.color = 'black';
-			var friend = new Pawn;
-			friend.color = 'white';
-			pawn.position = 'c3';
-			pawn.getCoordinates();
+		it('adds possible if there is an enemy to the diagonal left', function(){
 			pawn.squaresToPieces = {'d4': friend , 'b4': enemy};
 			pawn.getPossiblesDiagonalWhite();
 			expect(pawn.possibles).toContain('b4');
@@ -205,14 +197,26 @@ describe("Pawn", function() {
 		});
 	});
 
-	// describe("#getPossiblesDiagonalBlack", function() {
-	// 	var pawn;
+	describe("#getPossiblesDiagonalBlack", function() {
+		var pawn, enemy, friend;
 
-	// 	beforeEach(function() {
-	// 	  initializePawnConstructor();
-	// 	  pawn = new Pawn;
-	// 	  pawn.color = 'black';
-	// 	});
-	// });
+		beforeEach(function() {
+		  initializePawnConstructor();
+		  pawn = new Pawn;
+		  pawn.color = 'black';
+		  pawn.position = 'g3';
+		  pawn.getCoordinates();
+		  enemy = new Pawn;
+		  enemy.color = 'white';
+		  friend = new Pawn;
+		  friend.color = 'black';
+		});
+
+		it('adds no possibles if the there are no enemies diagonal to the piece', function(){
+			pawn.squaresToPieces = {'f2': '', 'h2': ''};
+			pawn.getPossiblesDiagonalBlack();
+			expect(pawn.possibles.length).toEqual(0);
+		});
+	});
 });
 

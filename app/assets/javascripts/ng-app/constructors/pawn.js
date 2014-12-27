@@ -23,12 +23,8 @@ function Pawn(){
 	};
 
 	this.getPossiblesDiagonalWhite = function(){
-		var x = this.coordinates.x + 1;
-		var y = this.coordinates.y + 1;
-		this.addPossibleDiagonalWhite(x, y);
-		var x = this.coordinates.x - 1;
-		var y = this.coordinates.y + 1;
-		this.addPossibleDiagonalWhite(x, y);
+		this.addPossibleDiagonalWhite(this.coordinates.x + 1, this.coordinates.y + 1);
+		this.addPossibleDiagonalWhite(this.coordinates.x - 1, this.coordinates.y + 1);
 	};
 
 	this.addPossibleDiagonalWhite = function(x, y){
@@ -36,8 +32,22 @@ function Pawn(){
 		if (isOnBoard(x,y)){
 			if (this.squaresToPieces[possible].color != this.color && this.squaresToPieces[possible] != ''){
 				this.possibles.push(possible);
+			};
+		};
+	};
+
+	this.getPossiblesDiagonalBlack = function(){
+		this.addPossibleDiagonalBlack(this.coordinates.x + 1, this.coordinates.y - 1);
+		this.addPossibleDiagonalBlack(this.coordinates.x - 1, this.coordinates.y - 1);
+	};
+
+	this.addPossibleDiagonalBlack = function(x, y){
+		var possible = convertCoordinatesToNotation(x, y);
+		if (isOnBoard(x,y)){
+			if (this.squaresToPieces[possible].color != this.color && this.squaresToPieces[possible] != ''){
+				this.possibles.push(possible);
 			}
-		}
+		};
 	};
 
 	this.getPossibleForwardWhite = function(){
