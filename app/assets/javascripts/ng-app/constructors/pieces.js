@@ -10,6 +10,7 @@ function Piece(){
 	this.possibles = [];
 	this.firstMoveTaken = false;
 	this.squaresToPieces = undefined;
+	this.captured = false;
 
 	this.getColor = function(){
 		this.color = this.name.match("[a-z]+")[0];

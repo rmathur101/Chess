@@ -38,7 +38,6 @@ function Game (player1, player2) {
       game.removeDroppable();
       game.currentPiece = game.pieceIdToObject(this.id);
       game.currentPossibles = game.currentPiece.getPossibles(game.squaresToPieces);
-      console.log(game.currentPossibles);
       game.dropPiece();
     });
   };
@@ -61,12 +60,25 @@ function Game (player1, player2) {
   };
 
   this.placePiece = function(oldPosition, newPosition){
+    this.capturePiece(newPosition);
     this.currentPiece.position = newPosition;
     this.currentPiece.firstMoveTaken = true;
     this.currentPiece.clearState();
     this.squaresToPieces[newPosition] = this.squaresToPieces[oldPosition];
     this.squaresToPieces[oldPosition] = "";
     $('#'+newPosition).append($('#'+this.currentPiece.name));
+  };
+
+  this.capturePiece = function(newPosition){
+    var capturedPiece = this.squaresToPieces[newPosition];
+    if (capturedPiece.color == 'white'){
+      $('#white_graveyard').append($('#' + capturedPiece.name));
+      capturedPiece.captured = true;
+    }
+    else if (capturedPiece.color == 'black'){
+      $('#black_graveyard').append($('#' + capturedPiece.name));
+      capturedPiece.captured = true;
+    };
   };
 
   this.pieceIdToObject = function(pieceId){

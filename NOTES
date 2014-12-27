@@ -8,12 +8,12 @@ Don't think I need the hash that relates piece names to piece objects; i can go 
 
 It's possible i don't even have to check isOnBoard for the pawn because the movement of conditions already put on the pieces
 
+Is capture piece in the right place?
 
+Where do dead pieces go from teh dictionary?
 
 Things To Do
 -------------------------
-Pawn movement for pieces in front of it
-Pawn movement for diagonally taking pieces
 Pawn becoming a queen
 
 
