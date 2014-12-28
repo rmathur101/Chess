@@ -3,9 +3,13 @@ function Bishop(){
 		this.clearState();
 		this.squaresToPieces = squaresToPieces;
 		this.getCoordinates();
+		this.getAllPositions();
+		return this.possibles;
+	};
+
+	this.getAllPositions = function(){
 		this.getPositiveSlopePositions();
 		this.getNegativeSlopePositions();
-		return this.possibles;
 	};
 
 	this.getPositiveSlopePositions = function(){
