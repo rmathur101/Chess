@@ -38,7 +38,6 @@ function Game (player1, player2) {
       game.removeDroppable();
       game.currentPiece = game.pieceIdToObject(this.id);
       game.currentPossibles = game.currentPiece.getPossibles(game.squaresToPieces);
-      console.log(game.currentPossibles);
       game.dropPiece();
     });
   };
