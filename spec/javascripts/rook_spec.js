@@ -81,12 +81,84 @@ describe("Rook", function() {
 		});
 	});
 
-	// describe("#getHorizontalRightPositions", function() {
+	describe("#getHorizontalRightPositions", function() {
+		var rook, enemy, friend;
 
-	// });
+		beforeEach(function() {
+		  initializeRookConstructor();
+		  rook = new Rook;
+		  rook.color = 'black';
+		  rook.position = 'd4';
+		  rook.getCoordinates();
+		  friend = new Pawn;
+		  friend.color = 'black';
+		  enemy = new Pawn;
+		  enemy.color = 'white';
+		});
 
-	// describe("#getHorizontalLeftPositions", function() {
+		it("adds possible horizontal right positions if there are no pieces in the way", function() {
+			rook.squaresToPieces = {'a4': '', 'b4': '', 'c4': '', 'e4': '', 'f4': '', 'g4': '', 'h4': ''};
+			rook.getHorizontalRightPositions();
+			expect(rook.possibles).toContain('e4');
+			expect(rook.possibles).toContain('f4');
+			expect(rook.possibles).toContain('g4');
+			expect(rook.possibles).toContain('h4');
+			expect(rook.possibles.length).toEqual(4);
+		});
 
-	// });
+		it("adds possible horizontal right positions until a friendly piece", function() {
+			rook.squaresToPieces = {'a4': '', 'b4': '', 'c4': '', 'e4': '', 'f4': friend, 'g4': friend, 'h4': friend};
+			rook.getHorizontalRightPositions();
+			expect(rook.possibles).toContain('e4');
+			expect(rook.possibles.length).toEqual(1);
+		});
 
+		it("adds possible horizontal right positions until and including an enemy piece", function() {
+			rook.squaresToPieces = {'a4': '', 'b4': '', 'c4': '', 'e4': '', 'f4': enemy, 'g4': enemy, 'h4': enemy};
+			rook.getHorizontalRightPositions();
+			expect(rook.possibles).toContain('e4');
+			expect(rook.possibles).toContain('f4');
+			expect(rook.possibles.length).toEqual(2);
+		});
+	});
+
+	describe("#getHorizontalLeftPositions", function() {
+		var rook, enemy, friend;
+
+		beforeEach(function() {
+		  initializeRookConstructor();
+		  rook = new Rook;
+		  rook.color = 'black';
+		  rook.position = 'd4';
+		  rook.getCoordinates();
+		  friend = new Pawn;
+		  friend.color = 'black';
+		  enemy = new Pawn;
+		  enemy.color = 'white';
+		});
+
+		it("adds possible horizontal left positions if there are no pieces in the way", function() {
+			rook.squaresToPieces = {'a4': '', 'b4': '', 'c4': '', 'e4': '', 'f4': '', 'g4': '', 'h4': ''};
+			rook.getHorizontalLeftPositions();
+			expect(rook.possibles).toContain('c4');
+			expect(rook.possibles).toContain('b4');
+			expect(rook.possibles).toContain('a4');
+			expect(rook.possibles.length).toEqual(3);
+		});
+
+		it("adds possible horizontal left positions until a friendly piece", function() {
+			rook.squaresToPieces = {'a4': friend, 'b4': '', 'c4': '', 'e4': '', 'f4': friend, 'g4': friend, 'h4': friend};
+			rook.getHorizontalLeftPositions();
+			expect(rook.possibles).toContain('c4');
+			expect(rook.possibles).toContain('b4');
+			expect(rook.possibles.length).toEqual(2);
+		});
+
+		it("adds possible horizontal left positions until and including an enemy piece", function() {
+			rook.squaresToPieces = {'a4': '', 'b4': '', 'c4': enemy, 'e4': '', 'f4': enemy, 'g4': enemy, 'h4': enemy};
+			rook.getHorizontalLeftPositions();
+			expect(rook.possibles).toContain('c4');
+			expect(rook.possibles.length).toEqual(1);
+		});
+	});
 });
