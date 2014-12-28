@@ -26,7 +26,3 @@ function Knight(){
 	};
 };
 
-function initializeKnightConstructor(){
-	Knight.prototype = new Piece();
-	Knight.constructor = Knight;
-};

@@ -4,18 +4,18 @@ $(function() {
 	var game = newGame();
 	game.initializeSquaresToPiecesDictionary();
 	game.listenForNewEvents();
-
 });
 
 
 function initializeConstructors(){
 	initializePawnConstructor();
-	Knight.prototype = new Piece();
-	Knight.constructor = Knight;
+	initializeKnightConstructor();
+	initializeBishopConstructor();
+
+
 	Rook.prototype = new Piece();
 	Rook.constructor = Rook;
-	Bishop.prototype = new Piece();
-	Bishop.constructor = Bishop;
+
 	Queen.prototype = new Piece();
 	Queen.constructor = Queen;
 	King.prototype = new Piece();
@@ -27,4 +27,19 @@ function newGame() {
 	player2 = new Player('black');
 	var game = new Game(player1, player2);
 	return game;
+};
+
+function initializePawnConstructor(){
+	Pawn.prototype = new Piece();
+	Pawn.constructor = Pawn;
+};
+
+function initializeKnightConstructor(){
+	Knight.prototype = new Piece();
+	Knight.constructor = Knight;
+};
+
+function initializeBishopConstructor(){
+	Bishop.prototype = new Piece();
+	Bishop.constructor = Bishop;
 };

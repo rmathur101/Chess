@@ -1,5 +1,5 @@
 describe("Knight", function() {
-	describe("#getPossiblesKnight", function() {
+	describe("#getPossiblePositions", function() {
 		var knight, enemy, friend;
 
 		beforeEach(function() {
@@ -40,5 +40,4 @@ describe("Knight", function() {
 			expect(knight.possibles.length).toEqual(0);
 		});
 	});
-
 });

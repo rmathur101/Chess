@@ -117,8 +117,5 @@ function Pawn(){
 	};
 };
 
-function initializePawnConstructor(){
-	Pawn.prototype = new Piece();
-	Pawn.constructor = Pawn;
-};
+
 
