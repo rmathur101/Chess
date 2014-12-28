@@ -10,7 +10,9 @@ It's possible i don't even have to check isOnBoard for the pawn because the move
 
 Is capture piece in the right place?
 
-Where do dead pieces go from teh dictionary?
+Where do dead pieces go from the dictionary?
+
+Is there some way to shore up the way the knight is working in the getPossiblePositions
 
 Things To Do
 -------------------------
