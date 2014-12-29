@@ -1,13 +1,8 @@
 describe("Pawn", function() {
-
-	describe("#getPossiblesDiagonalBlack", function() {
-	});
-
 	describe("#getPossibleFirstMoveWhite", function() {
 		var pawn;
 
 	  beforeEach(function() {
-	  	initializePawnConstructor();
 			pawn = new Pawn;
 			pawn.color = 'white';
 			pawn.position = "d2";
@@ -51,7 +46,6 @@ describe("Pawn", function() {
 		var pawn;
 
 	  beforeEach(function() {
-	  	initializePawnConstructor();
 			pawn = new Pawn;
 			pawn.color = 'black';
 			pawn.position = "f7";
@@ -95,7 +89,6 @@ describe("Pawn", function() {
 		var pawn;
 
 	  beforeEach(function() {
-	  	initializePawnConstructor();
 			pawn = new Pawn;
 			pawn.color = 'white';
 	  });
@@ -129,7 +122,6 @@ describe("Pawn", function() {
 		var pawn;
 
 	  beforeEach(function() {
-	  	initializePawnConstructor();
 			pawn = new Pawn;
 			pawn.color = 'black';
 	  });
@@ -165,7 +157,6 @@ describe("Pawn", function() {
 		var pawn, enemy, friend;
 
 		beforeEach(function() {
-		  initializePawnConstructor();
 		  pawn = new Pawn;
 		  pawn.color = 'white';
 		  pawn.position = 'c3';
@@ -201,7 +192,6 @@ describe("Pawn", function() {
 		var pawn, enemy, friend;
 
 		beforeEach(function() {
-		  initializePawnConstructor();
 		  pawn = new Pawn;
 		  pawn.color = 'black';
 		  pawn.position = 'g3';

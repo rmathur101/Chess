@@ -59,6 +59,13 @@ function Piece(){
 		this.image = '<img id='+this.name+' class="chess_piece '+this.color+'" src="'+image+'" alt="image">';
 		this.placePieceInitial(position);
 	};
+
+	this.addPossiblePosition = function(x, y){
+		var possible = convertCoordinatesToNotation(x, y);
+		if (isOnBoard(x,y) && (this.squaresToPieces[possible] == '' || this.squaresToPieces[possible].color != this.color)){
+			this.possibles.push(possible);
+		};
+	};
 };
 
 

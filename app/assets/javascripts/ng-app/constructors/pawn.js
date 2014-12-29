@@ -1,4 +1,6 @@
 function Pawn(){
+	Piece.call(this);
+
 	this.getPossibles = function(squaresToPieces){
 		this.clearState();
 		this.squaresToPieces = squaresToPieces;

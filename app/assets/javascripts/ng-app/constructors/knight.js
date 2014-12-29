@@ -1,4 +1,6 @@
 function Knight(){
+	Piece.call(this);
+
 	this.getPossibles = function(squaresToPieces){
 		this.clearState();
 		this.squaresToPieces = squaresToPieces;
@@ -16,13 +18,6 @@ function Knight(){
 		this.addPossiblePosition(this.coordinates.x - 1, this.coordinates.y - 2);
 		this.addPossiblePosition(this.coordinates.x + 1, this.coordinates.y + 2);
 		this.addPossiblePosition(this.coordinates.x + 1, this.coordinates.y - 2);
-	};
-
-	this.addPossiblePosition = function(x, y){
-		var possible = convertCoordinatesToNotation(x, y);
-		if (isOnBoard(x,y) && (this.squaresToPieces[possible] == '' || this.squaresToPieces[possible].color != this.color)){
-			this.possibles.push(possible);
-		};
 	};
 };
 

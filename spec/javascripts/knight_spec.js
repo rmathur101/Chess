@@ -3,7 +3,6 @@ describe("Knight", function() {
 		var knight, enemy, friend;
 
 		beforeEach(function() {
-		  initializeKnightConstructor();
 		  knight = new Knight;
 		  knight.color = 'black';
 		  knight.position = 'g7';

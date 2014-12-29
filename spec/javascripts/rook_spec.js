@@ -3,7 +3,6 @@ describe("Rook", function() {
 		var rook, enemy, friend;
 
 		beforeEach(function() {
-		  initializeRookConstructor();
 		  rook = new Rook;
 		  rook.color = 'white';
 		  rook.position = 'b3';
@@ -47,7 +46,6 @@ describe("Rook", function() {
 		var rook, enemy, friend;
 
 		beforeEach(function() {
-		  initializeRookConstructor();
 		  rook = new Rook;
 		  rook.color = 'white';
 		  rook.position = 'b3';
@@ -85,7 +83,6 @@ describe("Rook", function() {
 		var rook, enemy, friend;
 
 		beforeEach(function() {
-		  initializeRookConstructor();
 		  rook = new Rook;
 		  rook.color = 'black';
 		  rook.position = 'd4';
@@ -126,7 +123,6 @@ describe("Rook", function() {
 		var rook, enemy, friend;
 
 		beforeEach(function() {
-		  initializeRookConstructor();
 		  rook = new Rook;
 		  rook.color = 'black';
 		  rook.position = 'd4';

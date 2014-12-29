@@ -3,7 +3,6 @@ describe("Bishop", function() {
 		var bishop, enemy, friend;
 
 		beforeEach(function() {
-		  initializeBishopConstructor();
 		  bishop = new Bishop;
 		  bishop.color = 'white';
 		  bishop.position = 'c4';
@@ -43,7 +42,6 @@ describe("Bishop", function() {
 		var bishop, enemy, friend;
 
 		beforeEach(function() {
-		  initializeBishopConstructor();
 		  bishop = new Bishop;
 		  bishop.color = 'white';
 		  bishop.position = 'c4';
@@ -80,7 +78,6 @@ describe("Bishop", function() {
 		var bishop, enemy, friend;
 
 		beforeEach(function() {
-		  initializeBishopConstructor();
 		  bishop = new Bishop;
 		  bishop.color = 'black';
 		  bishop.position = 'e3';
@@ -122,7 +119,6 @@ describe("Bishop", function() {
 		var bishop, enemy, friend;
 
 		beforeEach(function() {
-		  initializeBishopConstructor();
 		  bishop = new Bishop;
 		  bishop.color = 'black';
 		  bishop.position = 'e3';
