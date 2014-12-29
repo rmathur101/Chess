@@ -1,5 +1,5 @@
 function Rook(){
-	this.getPossibles = function(){
+	this.getPossibles = function(squaresToPieces){
 		this.clearState();
 		this.squaresToPieces = squaresToPieces;
 		this.getCoordinates();
@@ -8,8 +8,8 @@ function Rook(){
 	};
 
 	this.getAllPositions = function(){
-		this.getVerticalRightPositions();
-		this.getVerticalLeftPositions();
+		this.getVerticalUpPositions();
+		this.getVerticalDownPositions();
 		this.getHorizontalRightPositions();
 		this.getHorizontalLeftPositions();
 	};
