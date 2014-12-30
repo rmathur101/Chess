@@ -47,4 +47,61 @@ describe("King", function() {
 			expect(king.possibles.length).toEqual(0);
 		});
 	});
+
+	describe("#isVerticalUpAttack", function() {
+		var king;
+
+		beforeEach(function() {
+		  king = new King;
+		  king.color = 'white';
+		  king.position = 'c3';
+		  king.getCoordinates();
+
+		  // friend = new Pawn;
+		  // friend.color = 'white';
+		  // enemy = new Pawn;
+		  // enemy.color = 'black';
+		});
+
+		it("returns false if there is no attack in the vertical up direction when there are no pieces", function() {
+			king.squaresToPieces = {'c4': '', 'c5': '', 'c6': '', 'c7': '', 'c8': ''};
+			expect(king.isVerticalUpAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the vertical up direction when there are friend", function() {
+			var friend = new Rook;
+			friend.color = 'white'
+			friend.pieceType = 'rook';
+			king.squaresToPieces = {'c4': '', 'c5': friend, 'c6': '', 'c7': '', 'c8': ''};
+			expect(king.isVerticalUpAttack()).toBe(false);
+		});
+
+		it("returns false if there is not attack in the vertical up direction when there is a bengin enemy piece", function() {
+			var enemy = new Pawn;
+			enemy.color = 'black';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'c4': enemy, 'c5': '', 'c6': '', 'c7': '', 'c8': ''};
+			expect(king.isVerticalUpAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack in the vertical up direction when there is a threatening enemy piece", function() {
+			var enemy = new Rook;
+			enemy.color = 'black';
+			enemy.pieceType = 'rook';
+			king.squaresToPieces = {'c4': enemy, 'c5': '', 'c6': '', 'c7': '', 'c8': ''};
+			expect(king.isVerticalUpAttack()).toBe(true);
+		});
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
