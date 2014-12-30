@@ -32,7 +32,14 @@ function King(){
 	};
 
 	this.isVerticalDownAttack = function(){
-
+		var x = this.coordinates.x;
+		for(y = this.coordinates.y - 1; y >= 0; y--){
+			var possible = convertCoordinatesToNotation(x, y);
+			if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'rook' || this.squaresToPieces[possible].pieceType == 'queen')){
+				return true;
+			};
+		};
+		return false;
 	};
 
 	this.isHorizontalLeftAttack = function(){
