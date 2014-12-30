@@ -33,6 +33,21 @@ function Game (player1, player2) {
   this.listenForNewEvents = function(){
     var game = this;
 
+    $('.chess_piece').unbind();
+
+    $('.chess_piece.'+game.active).mouseover(function(){
+      game.clearState();
+      game.currentPiece = game.pieceIdToObject(this.id);
+      game.currentPossibles = game.currentPiece.getPossibles(game.squaresToPieces);
+      _.each(game.currentPossibles, function(x){
+        $('#' + x).addClass('highlight_square');
+      });
+    });
+
+    $('.chess_square').mouseout(function(){
+      $('.chess_square').removeClass('highlight_square');
+    });
+
     $('.chess_piece.'+game.active).draggable({revert: "invalid"});
     $('.chess_piece.'+game.active).mousedown(function(event){
       event.preventDefault();

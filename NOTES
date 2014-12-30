@@ -22,6 +22,8 @@ Consistency with rook and bishop
 
 Typing things again and again sucks; why? So that's why going back to change things in one place is so much better than going back and changing things everywhere; and this is why choosing bad names for things sucks
 
+What is special about bind() and unbind()?
+
 Things To Do
 -------------------------
 Pawn becoming a queen
