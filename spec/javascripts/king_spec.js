@@ -239,27 +239,122 @@ describe("King", function() {
 			var friend = new Rook;
 			friend.color = 'black';
 			friend.pieceType = 'rook';
-			var enemy = new Bishop;
+			var enemy = new Queen;
 			enemy.color = 'white';
-			enemy.pieceType = 'bishop';
+			enemy.pieceType = 'queen';
 			king.squaresToPieces = {'c1': '', 'd2': '', 'e3': '', 'g5': friend, 'h6': enemy};
 			expect(king.isDiagonalUpRightAttack()).toBe(false);
 		});
 
-	it("returns false if there is no attack in the diagonal up right direction when there is benign enemy piece", function() {
-		king.squaresToPieces = {'c1': '', 'd2': '', 'e3': '', 'g5': '', 'h6': ''};
-			var enemy = new Bishop;
+		it("returns false if there is no attack in the diagonal up right direction when there is benign enemy piece", function() {
+			var enemy = new Pawn;
 			enemy.color = 'white';
-			enemy.pieceType = 'bishop';
-		expect(king.isDiagonalUpRightAttack()).toBe(false);
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'c1': '', 'd2': '', 'e3': '', 'g5': enemy, 'h6': ''};
+			expect(king.isDiagonalUpRightAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack in the diagonal up right direction when there is a threatening enemy piece", function() {
+			var enemy = new Queen;
+			enemy.color = 'white';
+			enemy.pieceType = 'queen';
+			king.squaresToPieces = {'c1': '', 'd2': '', 'e3': '', 'g5': enemy, 'h6': ''};
+			expect(king.isDiagonalUpRightAttack()).toBe(true);
+		});
 	});
 
-	//need to take into account that pawn can only be one away diagonally
+	describe("#isDiagonalDownLeftAttack", function() {
+		var king;
+
+		beforeEach(function() {
+		  king = new King;
+		  king.color = 'black';
+		  king.position = 'f4';
+		  king.getCoordinates();
+		});
+
+		it("returns false if there is no attack in the diagonal down left direction", function() {
+			king.squaresToPieces = {'c1': '', 'd2': '', 'e3': '', 'g5': '', 'h6': ''};
+			expect(king.isDiagonalDownLeftAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal down left direction when there is a friend piece", function() {
+			var friend = new Rook;
+			friend.color = 'black';
+			friend.pieceType = 'rook';
+			var enemy = new Queen;
+			enemy.color = 'white';
+			enemy.pieceType = 'queen';
+			king.squaresToPieces = {'c1': enemy, 'd2': friend, 'e3': '', 'g5': '', 'h6': ''};
+			expect(king.isDiagonalDownLeftAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal down left direction when there is benign enemy piece", function() {
+			var enemy = new Pawn;
+			enemy.color = 'white';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'c1': '', 'd2': enemy, 'e3': '', 'g5': '', 'h6': ''};
+			expect(king.isDiagonalDownLeftAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack in the diagonal down left direction when there is a threatening enemy piece", function() {
+			var enemy = new Queen;
+			enemy.color = 'white';
+			enemy.pieceType = 'queen';
+			king.squaresToPieces = {'c1': enemy, 'd2': '', 'e3': '', 'g5': '', 'h6': ''};
+			expect(king.isDiagonalDownLeftAttack()).toBe(true);
+		});
+	});
+
+	describe("#isDiagonalUpLeftAttack", function() {
+		var king;
+
+		beforeEach(function() {
+		  king = new King;
+		  king.color = 'white';
+		  king.position = 'd5';
+		  king.getCoordinates();
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction", function() {
+			king.squaresToPieces = {'a8': '', 'b7': '', 'c6': '', 'e4': '', 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalUpLeftAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction when there is a friend piece", function() {
+			var friend = new Rook;
+			friend.color = 'white';
+			friend.pieceType = 'rook';
+			var enemy = new Queen;
+			enemy.color = 'black';
+			enemy.pieceType = 'queen';
+			king.squaresToPieces = {'a8': enemy, 'b7': friend, 'c6': '', 'e4': '', 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalUpLeftAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction when there is benign enemy piece", function() {
+			var enemy = new Pawn;
+			enemy.color = 'black';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'a8': '', 'b7': '', 'c6': enemy, 'e4': '', 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalUpLeftAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack in the diagonal down left direction when there is a threatening enemy piece", function() {
+			var enemy = new Bishop;
+			enemy.color = 'black';
+			enemy.pieceType = 'bishop';
+			king.squaresToPieces = {'a8': '', 'b7': enemy, 'c6': '', 'e4': '', 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalUpLeftAttack()).toBe(true);
+		});
+	});
+
 });
 
 
 
 
+	//need to take into account that pawn can only be one away diagonally
 
 
 

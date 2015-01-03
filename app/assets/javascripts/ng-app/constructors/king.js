@@ -91,7 +91,7 @@ function King(){
 		for(x = this.coordinates.x + 1, y = this.coordinates.y + 1; x < 8 && y < 8; x ++, y++){
 			var possible = convertCoordinatesToNotation(x, y);
 			if(this.squaresToPieces[possible] != ''){
-				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'pawn' || this.squaresToPieces[possible].pieceType == 'bishop')){
+				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'queen' || this.squaresToPieces[possible].pieceType == 'bishop')){
 					return true;
 				}
 				else{
@@ -105,11 +105,35 @@ function King(){
 	//need to take into account that a pawn can only be one away diagonally
 
 	this.isDiagonalDownLeftAttack = function(){
-
+		var x, y;
+		for(x = this.coordinates.x - 1, y = this.coordinates.y - 1; x >= 0 && y >= 0; x --, y--){
+			var possible = convertCoordinatesToNotation(x, y);
+			if(this.squaresToPieces[possible] != ''){
+				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'queen' || this.squaresToPieces[possible].pieceType == 'bishop')){
+					return true;
+				}
+				else{
+					return false;
+				};
+			};
+		};
+		return false;
 	};
 
 	this.isDiagonalUpLeftAttack = function(){
-
+		var x, y;
+		for(x = this.coordinates.x - 1, y = this.coordinates.y + 1; x >= 0 && y < 8; x --, y++){
+			var possible = convertCoordinatesToNotation(x, y);
+			if(this.squaresToPieces[possible] != ''){
+				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'queen' || this.squaresToPieces[possible].pieceType == 'bishop')){
+					return true;
+				}
+				else{
+					return false;
+				};
+			};
+		};
+		return false;
 	};
 
 	this.isDiagonalDownRightAttack = function(){
@@ -120,5 +144,11 @@ function King(){
 
 	};
 
+	this.isWhitePawnAttack = function(){
 
+	};
+
+	this.isBlackPawnAttack = function(){
+
+	};
 };
