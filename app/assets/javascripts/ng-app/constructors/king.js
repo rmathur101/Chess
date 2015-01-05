@@ -102,8 +102,6 @@ function King(){
 		return false;
 	};
 
-	//need to take into account that a pawn can only be one away diagonally
-
 	this.isDiagonalDownLeftAttack = function(){
 		var x, y;
 		for(x = this.coordinates.x - 1, y = this.coordinates.y - 1; x >= 0 && y >= 0; x --, y--){
@@ -137,11 +135,47 @@ function King(){
 	};
 
 	this.isDiagonalDownRightAttack = function(){
-
+		var x, y;
+		for(x = this.coordinates.x + 1, y = this.coordinates.y - 1; x < 8 && y >= 0; x ++, y--){
+			var possible = convertCoordinatesToNotation(x, y);
+			if(this.squaresToPieces[possible] != ''){
+				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'queen' || this.squaresToPieces[possible].pieceType == 'bishop')){
+					return true;
+				}
+				else{
+					return false;
+				};
+			};
+		};
+		return false;
 	};
 
-	this.isKnightAttack = function(){
+	// this.isKnightAttack = function(){
+	// 	var x = this.coordinates.x;
+	// 	var y = this.coordinates.y;
+	// 	var possible = convertCoordinatesToNotation(x,y);
 
+	//  if(checkKnightAttack(x - 2, y + 1)){
+	//  	return true;
+	//  }
+	//  else if(checkKnightAttack(x - 2, y - 1)){
+	//  	return true;
+	//  }
+	//  else if(checkKnightAttack(x + 2, y + 1)){
+	//  	return true;
+	//  }
+	//  else if(checkKnightAttack(x + 2, y - 1)){
+	//  	return true;
+	//  }
+	//  else if(checkKnightAttack(x))
+
+
+	// };
+
+	this.checkKnightAttack = function(x, y){
+	 if(isOnBoard(x ,y) && this.squaresToPieces[convertCoordinatesToNotation(x, y)].pieceType == 'knight' && this.squaresToPieces[convertCoordinatesToNotation(x ,y)].color != this.color){
+	 	return true;
+	 }
 	};
 
 	this.isWhitePawnAttack = function(){

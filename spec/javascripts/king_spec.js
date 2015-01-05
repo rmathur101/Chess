@@ -349,6 +349,66 @@ describe("King", function() {
 		});
 	});
 
+	describe("#isDiagonalDownRightAttack", function() {
+		var king;
+
+		beforeEach(function() {
+		  king = new King;
+		  king.color = 'white';
+		  king.position = 'd5';
+		  king.getCoordinates();
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction", function() {
+			king.squaresToPieces = {'a8': '', 'b7': '', 'c6': '', 'e4': '', 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalDownRightAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction when there is a friend piece", function() {
+			var friend = new Rook;
+			friend.color = 'white';
+			friend.pieceType = 'rook';
+			var enemy = new Queen;
+			enemy.color = 'black';
+			enemy.pieceType = 'queen';
+			king.squaresToPieces = {'a8': enemy, 'b7': friend, 'c6': '', 'e4': friend, 'f3': enemy, 'g2': '', 'h1': ''};
+			expect(king.isDiagonalDownRightAttack()).toBe(false);
+		});
+
+		it("returns false if there is no attack in the diagonal up left direction when there is benign enemy piece", function() {
+			var enemy = new Pawn;
+			enemy.color = 'black';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'a8': '', 'b7': '', 'c6': enemy, 'e4': enemy, 'f3': '', 'g2': '', 'h1': ''};
+			expect(king.isDiagonalDownRightAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack in the diagonal up left direction when there is a threatening enemy piece", function() {
+			var enemy = new Bishop;
+			enemy.color = 'black';
+			enemy.pieceType = 'bishop';
+			king.squaresToPieces = {'a8': '', 'b7': enemy, 'c6': '', 'e4': '', 'f3': '', 'g2': enemy, 'h1': ''};
+			expect(king.isDiagonalDownRightAttack()).toBe(true);
+		});
+	});
+
+	describe("#isKnightAttack", function() {
+		var king;
+
+		beforeEach(function() {
+		  king = new King;
+		  king.color = 'white';
+		  king.position = 'e2'
+		  king.getCoordinates();
+		});
+
+		// it("returns false if there is no attack by a knight", function() {
+		// 	king.squaresToPieces = {'c3': '', 'd4': '', 'f4': '', 'g3': '', 'c1': '', 'g1': ''};
+		// 	expect(king.isKnightAttack()).toBe(false);
+		// });
+
+	});
+
 });
 
 
