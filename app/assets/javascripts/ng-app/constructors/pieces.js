@@ -17,7 +17,7 @@ function Piece(){
 	};
 
 	this.getPieceType = function(){
-		this.pieceType = this.name.match("[A-Z]{1}[a-z]+")[0];
+		this.pieceType = (this.name.match("[A-Z]{1}[a-z]+")[0]).toLowerCase();
 	};
 
 	this.placePieceInitial = function(square_position){

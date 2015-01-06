@@ -8,6 +8,7 @@ function King(){
 		this.squaresToPieces = squaresToPieces;
 		this.getCoordinates();
 		this.getAllPositions();
+		this.isCheck();
 		return this.possibles;
 	};
 
@@ -22,9 +23,20 @@ function King(){
 		this.addPossiblePosition(this.coordinates.x + 1, this.coordinates.y - 1);
 	};
 
-	this.isVerticalUpAttack = function(){
-		var x = this.coordinates.x;
-		for(y = this.coordinates.y + 1; y < 8; y++){
+	this.isCheck = function(){
+		if (this.isVerticalUpAttack() == true || this.isVerticalDownAttack() == true ||  this.isHorizontalLeftAttack() == true || this.isHorizontalRightAttack() == true || this.isDiagonalUpRightAttack() == true || this.isDiagonalDownLeftAttack() == true || this.isDiagonalUpLeftAttack() == true || this.isDiagonalDownRightAttack() == true || this.isKnightAttack() == true || this.isPawnAttack() == true){
+			console.log("KING IS IN CHECK");
+			return true;
+		}
+		else{
+			return false;
+		};
+	};
+
+
+
+	this.isVerticalUpAttack = function(x, y){
+		for(y = y + 1; y < 8; y++){
 			var possible = convertCoordinatesToNotation(x, y);
 			if(this.squaresToPieces[possible] != ''){
 				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'rook' || this.squaresToPieces[possible].pieceType == 'queen')){
@@ -38,9 +50,8 @@ function King(){
 		return false;
 	};
 
-	this.isVerticalDownAttack = function(){
-		var x = this.coordinates.x;
-		for(y = this.coordinates.y - 1; y >= 0; y--){
+	this.isVerticalDownAttack = function(x, y){
+		for(y = y - 1; y >= 0; y--){
 			var possible = convertCoordinatesToNotation(x, y);
 			if(this.squaresToPieces[possible] != ''){
 				if(this.squaresToPieces[possible].color != this.color && (this.squaresToPieces[possible].pieceType == 'rook' || this.squaresToPieces[possible].pieceType == 'queen')){
@@ -225,7 +236,6 @@ function King(){
 			return false;
 		}
 	};
-
 };
 
 
