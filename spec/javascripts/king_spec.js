@@ -402,10 +402,10 @@ describe("King", function() {
 		  king.getCoordinates();
 		});
 
-		// it("returns false if there is no attack by a knight", function() {
-		// 	king.squaresToPieces = {'c3': '', 'd4': '', 'f4': '', 'g3': '', 'c1': '', 'g1': ''};
-		// 	expect(king.isKnightAttack()).toBe(false);
-		// });
+		it("returns false if there is no attack by a knight", function() {
+			king.squaresToPieces = {'c1': '', 'c3': '', 'd4': '', 'f4': '', 'g3': '', 'g1': ''};
+			expect(king.isKnightAttack()).toBe(false);
+		});
 
 	});
 

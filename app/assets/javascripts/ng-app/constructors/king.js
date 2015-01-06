@@ -150,29 +150,42 @@ function King(){
 		return false;
 	};
 
-	// this.isKnightAttack = function(){
-	// 	var x = this.coordinates.x;
-	// 	var y = this.coordinates.y;
-	// 	var possible = convertCoordinatesToNotation(x,y);
+	this.isKnightAttack = function(){
+		var x = this.coordinates.x;
+		var y = this.coordinates.y;
 
-	//  if(checkKnightAttack(x - 2, y + 1)){
-	//  	return true;
-	//  }
-	//  else if(checkKnightAttack(x - 2, y - 1)){
-	//  	return true;
-	//  }
-	//  else if(checkKnightAttack(x + 2, y + 1)){
-	//  	return true;
-	//  }
-	//  else if(checkKnightAttack(x + 2, y - 1)){
-	//  	return true;
-	//  }
-	//  else if(checkKnightAttack(x))
+		if(this.checkKnightAttack(x - 2, y + 1)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x - 2, y - 1)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x + 2, y + 1)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x + 2, y - 1)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x - 1, y + 2)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x - 1, y - 2)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x + 1, y + 2)){
+			return true;
+		}
+		else if(this.checkKnightAttack(x + 1, y - 2)){
+			return true;
+		}
+		else{
+			return false;
+		};
+	};
 
-
-	// };
 
 	this.checkKnightAttack = function(x, y){
+		console.log(convertCoordinatesToNotation(x,y));
 	 if(isOnBoard(x ,y) && this.squaresToPieces[convertCoordinatesToNotation(x, y)].pieceType == 'knight' && this.squaresToPieces[convertCoordinatesToNotation(x ,y)].color != this.color){
 	 	return true;
 	 }
