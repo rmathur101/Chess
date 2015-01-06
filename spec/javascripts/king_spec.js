@@ -407,6 +407,84 @@ describe("King", function() {
 			expect(king.isKnightAttack()).toBe(false);
 		});
 
+		it("returns false if possible knight positions contains pieces other than opponent knight", function() {
+			var enemy = new Rook;
+			enemy.color = 'black';
+			var friend = new Knight;
+			friend.pieceType = 'knight';
+			friend.color = 'white';
+
+			king.squaresToPieces = {'c1': enemy, 'c3': friend, 'd4': enemy, 'f4': friend, 'g3': enemy, 'g1': friend};
+			expect(king.isKnightAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack by the knight", function() {
+			var enemy = new Knight;
+			enemy.pieceType = 'knight';
+			enemy.color = 'black';
+
+			king.squaresToPieces = {'c1': '', 'c3': '', 'd4': enemy, 'f4': '', 'g3': '', 'g1': ''};
+			expect(king.isKnightAttack()).toBe(true);
+		});
+	});
+
+	describe("#isPawnAttack (white case)", function() {
+		var king;
+
+		beforeEach(function() {
+			king = new King;
+		  king.color = 'white';
+		  king.position = 'a4'
+		  king.getCoordinates();
+		});
+
+		it("returns false if there is no attack by an opponent pawn", function() {
+			var friend = new Pawn;
+			friend.color = 'white';
+			friend.pieceType = 'pawn';
+			var enemy = new Rook;
+			enemy.color = 'black';
+			enemy.pieceType = 'rook';
+
+			king.squaresToPieces = {'a5': friend, 'b5': enemy};
+			expect(king.isPawnAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack by an opponent pawn", function() {
+			var enemy = new Pawn;
+			enemy.color = 'black';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'a5': '', 'b5': enemy};
+			expect(king.isPawnAttack()).toBe(true);
+		});
+	});
+
+	describe("#isPawnAttack (black case)", function() {
+		var king;
+
+		beforeEach(function() {
+			king = new King;
+		  king.color = 'black';
+		  king.position = 'h4'
+		  king.getCoordinates();
+		});
+
+		it("returns false if there is no attack by an opponent pawn", function() {
+			var enemy = new Pawn;
+			enemy.color = 'white';
+			enemy.pieceType = 'pawn';
+
+			king.squaresToPieces = {'g3': '', 'h3': enemy};
+			expect(king.isPawnAttack()).toBe(false);
+		});
+
+		it("returns true if there is an attack by an opponent pawn", function() {
+			var enemy = new Pawn;
+			enemy.color = 'white';
+			enemy.pieceType = 'pawn';
+			king.squaresToPieces = {'g3': enemy, 'h3': ''};
+			expect(king.isPawnAttack()).toBe(true);
+		});
 	});
 
 });

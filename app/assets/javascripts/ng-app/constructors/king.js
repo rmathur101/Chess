@@ -185,17 +185,52 @@ function King(){
 
 
 	this.checkKnightAttack = function(x, y){
-		console.log(convertCoordinatesToNotation(x,y));
 	 if(isOnBoard(x ,y) && this.squaresToPieces[convertCoordinatesToNotation(x, y)].pieceType == 'knight' && this.squaresToPieces[convertCoordinatesToNotation(x ,y)].color != this.color){
 	 	return true;
 	 }
 	};
 
-	this.isWhitePawnAttack = function(){
+	this.isPawnAttack = function(){
+		var x = this.coordinates.x;
+		var y = this.coordinates.y;
 
+		if (this.color == 'white'){
+			return this.isBlackPawnAttack(x, y);
+		}
+		else if (this.color == 'black'){
+			return this.isWhitePawnAttack(x, y);
+		};
 	};
 
-	this.isBlackPawnAttack = function(){
-
+	this.isWhitePawnAttack = function(x, y){
+		if (isOnBoard(x - 1, y - 1) && this.squaresToPieces[convertCoordinatesToNotation(x - 1, y - 1)].pieceType == 'pawn' && this.squaresToPieces[convertCoordinatesToNotation(x - 1, y - 1)].color != this.color) {
+			return true;
+		}
+		else if(isOnBoard(x + 1, y - 1) && this.squaresToPieces[convertCoordinatesToNotation(x + 1, y - 1)].pieceType == 'pawn' && this.squaresToPieces[convertCoordinatesToNotation(x + 1, y - 1)].color != this.color){
+			return true;
+		}
+		else{
+			return false;
+		}
 	};
+
+	this.isBlackPawnAttack = function(x, y){
+		if (isOnBoard(x - 1, y + 1) && this.squaresToPieces[convertCoordinatesToNotation(x - 1, y + 1)].pieceType == 'pawn' && this.squaresToPieces[convertCoordinatesToNotation(x - 1,y + 1)].color != this.color) {
+			return true;
+		}
+		else if(isOnBoard(x + 1, y + 1) && this.squaresToPieces[convertCoordinatesToNotation(x + 1, y + 1)].pieceType == 'pawn' && this.squaresToPieces[convertCoordinatesToNotation(x + 1,y + 1)].color != this.color){
+			return true;
+		}
+		else{
+			return false;
+		}
+	};
+
 };
+
+
+
+
+
+
+

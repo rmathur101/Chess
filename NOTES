@@ -24,6 +24,8 @@ Typing things again and again sucks; why? So that's why going back to change thi
 
 What is special about bind() and unbind()?
 
+Lot of repetition in code for pawn attacks in king.js
+
 Things To Do
 -------------------------
 Pawn becoming a queen
